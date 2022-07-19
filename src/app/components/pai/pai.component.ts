@@ -7,7 +7,7 @@ import { Teste } from 'src/app/Models/teste';
   styleUrls: ['./pai.component.scss']
 })
 export class PaiComponent implements OnInit {
-  obj:Teste[] = [{typeDocument:300,title:'foto do rosto',send:false,body:'<p>teste1</p>'},{typeDocument:302,title:'rg',send:false,body:'<p>teste2</p>'}]
+  obj:Teste[] = [{typeDocument:300,title:'foto do rosto',send:false,body:"<p id='complete'>teste1</p>"},{typeDocument:302,title:'rg',send:false,body:"<p id='complete'>teste2</p>"}]
   objsend:Teste;
   teste:boolean=true;
   index;
