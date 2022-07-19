@@ -23,11 +23,24 @@ export class PaiComponent implements OnInit {
   onEmiteTeste(evento){
     console.log(evento)
     this.obj[evento.indice].send=true
-    this.teste=true;
     console.log(this.obj[evento.indice])
+      if(evento.indice+1 < this.obj.length){
+        this.teste=true
+        setTimeout(() => {
+          this.objsend=this.obj.find(x => this.testeObj(x))
+          this.index=this.obj.indexOf(this.objsend)
+          this.teste=false
+        }, 150);
+      }
+      else{
+        this.objsend = {
+          typeDocument : null,
+          send:true,
+          title:'obrigado',
+          body:''
+        }
+      }
     
-    this.objsend=this.obj.find(x => this.testeObj(x))
-    this.index=this.obj.indexOf(this.objsend)
   }
 
   mostrar(){
