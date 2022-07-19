@@ -13,9 +13,15 @@ export class FilhoComponent implements OnInit {
   @Output() eventoteste:EventEmitter<any> = new EventEmitter();
   
 
-  constructor() { }
+  constructor() {
+    
+   }
 
   ngOnInit(): void {
+   
+  }
+
+  mudabody(){
     
   }
 
