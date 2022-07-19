@@ -1,5 +1,5 @@
 <p>{{title}}</p>
-<div id='complete'>
-    {{body | html}}
+<div id='complete' [innerHtml]="body">
+    
 </div>
 <button (click)="testeevento()"> teste</button>
