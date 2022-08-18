@@ -6,15 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./assignature.component.scss']
 })
 export class AssignatureComponent implements OnInit {
-  context
-
 
   constructor() {
     document.addEventListener('DOMContentLoaded',()=>{
       const tela=document.querySelector('canvas');
-      this.context = tela.getContext("2d")
-      tela.width = 700
-      tela.height= 500;
+      const context = tela.getContext("2d")
+
 
       const pincel={
         ativo:false,
@@ -24,10 +21,10 @@ export class AssignatureComponent implements OnInit {
       }
 
       const draw =(linha) =>{
-          this.context.beginPath();
-        this.context.moveTo(linha.posAnterior.x,linha.posAnterior.y);
-        this.context.lineTo(linha.pos.x,linha.pos.y);
-        this.context.stroke()
+        context.beginPath();
+        context.moveTo(linha.posAnterior.x,linha.posAnterior.y);
+        context.lineTo(linha.pos.x,linha.pos.y);
+        context.stroke()
       }
 
       tela.onmousedown = (evento) =>{
@@ -46,8 +43,9 @@ export class AssignatureComponent implements OnInit {
         pincel.movendo= true
 
       }
+
       const ciclo = ()=>{
-        pincel.ativo && pincel.movendo && pincel.posAnterior ){
+        if(pincel.ativo && pincel.movendo && pincel.posAnterior ){
           draw({pos:pincel.pos,posAnterior:pincel.posAnterior})
           pincel.movendo =false
         }
@@ -55,13 +53,15 @@ export class AssignatureComponent implements OnInit {
         pincel.posAnterior= {x: pincel.pos.x,y:pincel.pos.y}
         setTimeout(ciclo, 10);
       }
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
+
       ciclo()
 
+      document.getElementById('clear').addEventListener('click', function() {
+        context.clearRect(0, 0, tela.width, tela.height);
+      }, false);
     })
   }
+
 
 
   ngOnInit(): void {
