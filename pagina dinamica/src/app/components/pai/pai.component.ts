@@ -7,7 +7,7 @@ import { Teste } from 'src/app/Models/teste';
   styleUrls: ['./pai.component.scss']
 })
 export class PaiComponent implements OnInit {
-  obj:Teste[] = [{typeDocument:300,title:'foto do rosto',send:false,body:'<p>teste1</p>'},{typeDocument:302,title:'rg',send:false,body:'<p>teste2</p>'}]
+  obj:Teste[] = [{typeDocument:300,title:'foto do rosto',send:false,body:"<p id='complete'>teste1</p>"},{typeDocument:302,title:'rg',send:false,body:"<p id='complete'>teste2</p>"}]
   objsend:Teste;
   teste:boolean=true;
   index;
@@ -23,11 +23,24 @@ export class PaiComponent implements OnInit {
   onEmiteTeste(evento){
     console.log(evento)
     this.obj[evento.indice].send=true
-    this.teste=true;
     console.log(this.obj[evento.indice])
+      if(evento.indice+1 < this.obj.length){
+        this.teste=true
+        setTimeout(() => {
+          this.objsend=this.obj.find(x => this.testeObj(x))
+          this.index=this.obj.indexOf(this.objsend)
+          this.teste=false
+        }, 150);
+      }
+      else{
+        this.objsend = {
+          typeDocument : null,
+          send:true,
+          title:'obrigado',
+          body:''
+        }
+      }
     
-    this.objsend=this.obj.find(x => this.testeObj(x))
-    this.index=this.obj.indexOf(this.objsend)
   }
 
   mostrar(){
